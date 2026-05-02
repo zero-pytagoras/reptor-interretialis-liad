@@ -1,0 +1,10 @@
+services:
+  nginx-app:
+    build: .
+    container_name: ubuntu-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./html:/var/www/html
+      - ./nginx-conf/custom_site.conf:/etc/nginx/sites-enabled/custom_site.conf
+    restart: unless-stopped
