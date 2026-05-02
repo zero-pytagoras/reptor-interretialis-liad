@@ -82,7 +82,7 @@ restart_nginx() {
     echo "Testing Nginx configuration..."
     if docker exec ubuntu-nginx nginx -t; then
         echo "Reloading Nginx service inside the container..."
-        docker exec ubuntu-nginx systemctl reload nginx
+        docker exec ubuntu-nginx nginx -s reload
     else
         echo "Nginx configuration test failed. Skipping reload."
     fi
