@@ -26,7 +26,7 @@ generate_nginx_config() {
     echo "Configuring for main domain: $MAIN_DOMAIN"
     echo "Subdomains: ${SUBDOMAINS[*]}"
     echo "Generating Nginx config at $CONF_FILE..."
-
+# it would be way better to use template file and edit it with sed awk and grep
     # Start upstream block
     cat <<EOF > $CONF_FILE
 upstream available_servers {
@@ -68,8 +68,8 @@ EOF
     echo "Configuration generated successfully!"
 }
 
-check_docker_permission(){
-    if groups $USER | grep docker || [ "$EUID" -eq 0 ]
+check_docker_permission(){ 
+    if groups $USER | grep docker || [ "$EUID" -eq 0 ] # there is no point doing EUID test after docker permissions.
     then
         echo "User has permission to run Docker commands."
     else
@@ -89,8 +89,8 @@ restart_nginx() {
 }
 
 main() {
-    check_docker_permission
-    get_domain "$1"
+    check_docker_permission # this is fine work, but printing it out to user make him to worry
+    get_domain "$1" # this is not handled well
     generate_nginx_config
     restart_nginx
 }
