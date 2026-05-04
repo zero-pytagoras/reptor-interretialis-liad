@@ -30,7 +30,8 @@ generate_nginx_config() {
     # Start upstream block
     cat <<EOF > $CONF_FILE
 upstream available_servers {
-EOF
+EOF 
+# this is not working -> templating would be better option and it is mostly because EOF is not at the end of file.
 
     # Add upstream servers
     for SUB in "${SUBDOMAINS[@]}";
