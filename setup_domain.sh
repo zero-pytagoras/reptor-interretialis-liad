@@ -10,12 +10,12 @@ set -o pipefail
 #####################################
 
 # Define variables
-SUBDOMAINS=("test" "dev" "beta" "stage")
+SUBDOMAINS=("test" "dev" "beta" "stage") # what about enabling editing this list ?
 CONF_FILE="./nginx-conf/custom_site.conf"
 MAIN_DOMAIN=""
 
 get_domain() {
-    if [ -z "$1" ]; then
+    if [ -z "$1" ]; then # always prefer [[ over [
         echo "Error: domain argument is required"
         exit 1
     fi
