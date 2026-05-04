@@ -5,7 +5,7 @@
 # Date: 02/05/2026 
 # Version: 0.0.1
 set -o errexit
-set -o nounset
+set -o nounset # this make issues with your script -> you use this but did not consider handling error due to it,
 set -o pipefail
 #####################################
 
@@ -30,8 +30,7 @@ generate_nginx_config() {
     # Start upstream block
     cat <<EOF > $CONF_FILE
 upstream available_servers {
-EOF 
-# this is not working -> templating would be better option and it is mostly because EOF is not at the end of file.
+EOF                                 # this is not working -> templating would be better option and it is mostly because EOF is not at the end of file.
 
     # Add upstream servers
     for SUB in "${SUBDOMAINS[@]}";
